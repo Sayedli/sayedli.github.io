@@ -504,19 +504,19 @@ const IndexPage = () => {
               </p>
             </header>
             <div className="contact__links">
-              <a href="mailto:hello@hassanali.com">Email</a>
-              <a href="https://linkedin.com/in/hassanali" target="_blank" rel="noreferrer">
+              <a href="mailto:hudsonzaidi@gmail.com">Email</a>
+              <a href="https://www.linkedin.com/in/sayedli/" target="_blank" rel="noreferrer">
                 LinkedIn
               </a>
-              <a href="https://github.com/hassanali" target="_blank" rel="noreferrer">
+              <a href="https://sayedli.github.io" target="_blank" rel="noreferrer">
                 GitHub
               </a>
             </div>
           </section>
 
           <footer className="footer">
-            <span>© {currentYear} Hassan Ali · Toronto</span>
-            <a href="mailto:hello@hassanali.com">hello@hassanali.com</a>
+            <span>© {currentYear} Hassan Ali · Seattle</span>
+            <a href="mailto:hudsonzaidi@gmail.com">hudsonzaidi@gmail.com</a>
           </footer>
         </main>
       </div>
