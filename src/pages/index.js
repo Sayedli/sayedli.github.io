@@ -89,7 +89,7 @@ const writings = [
   },
 ]
 
-const NeuralField = () => {
+const NeuralField = ({ className = "background" }) => {
   const canvasRef = React.useRef(null)
 
   React.useEffect(() => {
@@ -121,13 +121,13 @@ const NeuralField = () => {
       canvas.style.height = `${height}px`
       context.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      const densityFactor = Math.min(180, Math.floor((width * height) / 6000))
+      const densityFactor = Math.min(220, Math.floor((width * height) / 5200))
       nodes = Array.from({ length: densityFactor }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 1.4,
-        vy: (Math.random() - 0.5) * 1.4,
-        radius: Math.random() * 1.7 + 0.6,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5,
+        radius: Math.random() * 1.8 + 0.7,
       }))
     }
 
@@ -152,11 +152,13 @@ const NeuralField = () => {
     const updateNodes = () => {
       const width = window.innerWidth
       const height = window.innerHeight
-      const maxSpeed = 1.6
+      const maxSpeed = 2
+      const stormBand = height * 0.4
 
       nodes.forEach(node => {
-        node.vx += (Math.random() - 0.5) * 0.08
-        node.vy += (Math.random() - 0.5) * 0.08
+        const turbulence = node.y < stormBand ? 0.16 : 0.1
+        node.vx += (Math.random() - 0.5) * turbulence
+        node.vy += (Math.random() - 0.5) * turbulence
 
         node.x += node.vx
         node.y += node.vy
@@ -175,16 +177,16 @@ const NeuralField = () => {
           const influenceRadius = 220
 
           if (distance < influenceRadius) {
-            const strength = (1 - distance / influenceRadius) * 0.9
-            node.vx += (dx / distance) * strength * 0.18
-            node.vy += (dy / distance) * strength * 0.18
+            const strength = (1 - distance / influenceRadius) * (node.y < stormBand ? 0.28 : 0.2)
+            node.vx += (dx / distance) * strength * 0.12
+            node.vy += (dy / distance) * strength * 0.12
           }
         }
 
         node.vx = Math.max(Math.min(node.vx, maxSpeed), -maxSpeed)
         node.vy = Math.max(Math.min(node.vy, maxSpeed), -maxSpeed)
-        node.vx *= 0.992
-        node.vy *= 0.992
+        node.vx *= 0.99
+        node.vy *= 0.99
       })
 
       if (pointer.active && performance.now() - pointer.lastActive > 220) {
@@ -198,7 +200,7 @@ const NeuralField = () => {
       const width = window.innerWidth
       const height = window.innerHeight
 
-      context.lineWidth = 0.8
+      context.lineWidth = 0.85
 
       for (let i = 0; i < nodes.length; i += 1) {
         const nodeA = nodes[i]
@@ -208,11 +210,11 @@ const NeuralField = () => {
           const dx = nodeA.x - nodeB.x
           const dy = nodeA.y - nodeB.y
           const distance = Math.sqrt(dx * dx + dy * dy)
-          const maxDistance = 185
+          const maxDistance = 190
 
           if (distance < maxDistance) {
             const opacity = 1 - distance / maxDistance
-            context.strokeStyle = `rgba(94, 234, 212, ${opacity * 0.45})`
+            context.strokeStyle = `rgba(99, 210, 255, ${opacity * 0.42})`
             context.beginPath()
             context.moveTo(nodeA.x, nodeA.y)
             context.lineTo(nodeB.x, nodeB.y)
@@ -222,7 +224,7 @@ const NeuralField = () => {
       }
 
       nodes.forEach(node => {
-        context.fillStyle = "rgba(148, 163, 184, 0.65)"
+        context.fillStyle = "rgba(148, 221, 255, 0.6)"
         context.beginPath()
         context.arc(node.x, node.y, node.radius, 0, Math.PI * 2)
         context.fill()
@@ -237,7 +239,8 @@ const NeuralField = () => {
           pointer.y,
           140
         )
-        gradient.addColorStop(0, "rgba(34, 211, 238, 0.35)")
+        gradient.addColorStop(0, "rgba(79, 209, 255, 0.4)")
+        gradient.addColorStop(0.4, "rgba(34, 197, 247, 0.3)")
         gradient.addColorStop(1, "rgba(14, 116, 144, 0)")
         context.fillStyle = gradient
         context.beginPath()
@@ -275,7 +278,7 @@ const NeuralField = () => {
   }, [])
 
   return (
-    <div className="background" aria-hidden="true">
+    <div className={className} aria-hidden="true">
       <canvas ref={canvasRef} className="background__canvas" />
     </div>
   )
@@ -284,6 +287,8 @@ const NeuralField = () => {
 const IndexPage = () => {
   const [activeSection, setActiveSection] = React.useState("home")
   const currentYear = React.useMemo(() => new Date().getFullYear(), [])
+  const scrollIndicatorRef = React.useRef(null)
+  const [scrollActive, setScrollActive] = React.useState(false)
 
   React.useEffect(() => {
     if (typeof window === "undefined") {
@@ -341,31 +346,38 @@ const IndexPage = () => {
     return () => sectionObserver.disconnect()
   }, [])
 
+  React.useEffect(() => {
+    if (typeof window === "undefined") {
+      return undefined
+    }
+
+    const handlePointerMove = event => {
+      const indicator = scrollIndicatorRef.current
+      if (!indicator) {
+        return
+      }
+
+      const rect = indicator.getBoundingClientRect()
+      const centerX = rect.left + rect.width / 2
+      const centerY = rect.top + rect.height / 2
+      const dx = event.clientX - centerX
+      const dy = event.clientY - centerY
+      const distance = Math.sqrt(dx * dx + dy * dy)
+      const activationRadius = Math.max(rect.width, rect.height) * 1.6
+
+      setScrollActive(distance < activationRadius)
+    }
+
+    window.addEventListener("pointermove", handlePointerMove)
+    return () => window.removeEventListener("pointermove", handlePointerMove)
+  }, [])
+
   const formatIndex = React.useCallback(index => String(index + 1).padStart(2, "0"), [])
 
   return (
     <div className="page-wrapper">
       <NeuralField />
       <div className="page-shell">
-        <aside className="page-nav">
-          <span className="page-nav__logo">Hassan Ali</span>
-          <nav aria-label="Primary">
-            <ul className="page-nav__list">
-              {navLinks.map((link, index) => (
-                <li key={link.id}>
-                  <a
-                    className={`page-nav__item ${activeSection === link.id ? "is-active" : ""}`}
-                    href={link.href}
-                  >
-                    <span>{formatIndex(index)}</span>
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
-
         <main className="page-content">
           <section
             className="hero hero--cover reveal"
@@ -374,13 +386,16 @@ const IndexPage = () => {
             data-section="home"
           >
             <div className="hero__intro hero__intro--cover">
-              <span className="hero__eyebrow hero__eyebrow--cover">Portfolio</span>
               <div className="hero__identity">
-                <span className="hero__name">Hassan Ali</span>
+                <span className="hero__name">Sayed Ali</span>
                 <span className="hero__title hero__title--cover">Software Developer</span>
               </div>
-              <div className="hero__scroll-indicator" aria-hidden="true">
-                <span>Scroll</span>
+              <div
+                className={`hero__scroll-indicator ${scrollActive ? "hero__scroll-indicator--active" : ""}`}
+                aria-hidden="true"
+                ref={scrollIndicatorRef}
+              >
+                <span>Scroll down</span>
                 <span className="hero__scroll-indicator-arrow">▼</span>
               </div>
             </div>
