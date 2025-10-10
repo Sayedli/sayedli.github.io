@@ -94,48 +94,17 @@ a:focus-visible {
 
 .hero {
   position: relative;
-  display: grid;
-  gap: 2.5rem;
-  background: rgba(6, 11, 25, 0.78);
-  border-radius: var(--radius-large);
-  padding: 3.75rem;
-  border: 1px solid rgba(96, 165, 250, 0.28);
-  backdrop-filter: blur(var(--blur));
-  box-shadow: 0 48px 90px rgba(2, 132, 199, 0.26);
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -14%;
-  border-radius: inherit;
-  background: radial-gradient(circle at 35% 18%, rgba(59, 130, 246, 0.32), transparent 55%),
-    radial-gradient(circle at 72% 16%, rgba(165, 243, 252, 0.22), transparent 60%),
-    radial-gradient(circle at 28% 72%, rgba(20, 83, 196, 0.22), transparent 68%);
-  opacity: 0.75;
-  pointer-events: none;
-}
-
-.hero__intro {
-  position: relative;
-  z-index: 1;
+  min-height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.2rem;
-}
-
-.hero--cover {
-  min-height: min(88vh, 780px);
-  align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.hero__intro--cover {
-  align-items: center;
-  gap: 2rem;
+  gap: 2.2rem;
+  padding: clamp(4rem, 12vw, 6rem) 2rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .hero__eyebrow {
@@ -174,50 +143,9 @@ a:focus-visible {
   color: rgba(203, 213, 225, 0.75);
 }
 
-.hero__title--cover {
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
-}
 
-.hero__summary {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: rgba(226, 232, 240, 0.8);
-}
 
-.hero__details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: center;
-}
 
-.hero__location {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.hero__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 1.6rem;
-  border-radius: 999px;
-  border: 1px solid rgba(56, 189, 248, 0.6);
-  background: rgba(8, 47, 73, 0.65);
-  color: var(--accent);
-  font-weight: 600;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-}
-
-.hero__cta:hover,
-.hero__cta:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--accent-strong);
-  box-shadow: 0 18px 32px rgba(8, 145, 178, 0.35);
-}
 
 .hero__callouts {
   display: flex;
@@ -234,12 +162,12 @@ a:focus-visible {
   font-size: 0.85rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(148, 163, 184, 0.62);
+  color: rgba(191, 219, 254, 0.7);
   transition: color 220ms ease, transform 220ms ease;
 }
 
 .hero__scroll-indicator--active {
-  color: rgba(191, 219, 254, 0.95);
+  color: rgba(191, 219, 254, 1);
   transform: translateY(-6px);
 }
 

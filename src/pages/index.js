@@ -379,25 +379,18 @@ const IndexPage = () => {
       <NeuralField />
       <div className="page-shell">
         <main className="page-content">
-          <section
-            className="hero hero--cover reveal"
-            id="home"
-            data-animate
-            data-section="home"
-          >
-            <div className="hero__intro hero__intro--cover">
-              <div className="hero__identity">
-                <span className="hero__name">Sayed Ali</span>
-                <span className="hero__title hero__title--cover">Software Developer</span>
-              </div>
-              <div
-                className={`hero__scroll-indicator ${scrollActive ? "hero__scroll-indicator--active" : ""}`}
-                aria-hidden="true"
-                ref={scrollIndicatorRef}
-              >
-                <span>Scroll down</span>
-                <span className="hero__scroll-indicator-arrow">▼</span>
-              </div>
+          <section className="hero reveal" id="home" data-animate data-section="home">
+            <div className="hero__identity">
+              <span className="hero__name">Sayed Ali</span>
+              <span className="hero__title">Software Developer</span>
+            </div>
+            <div
+              className={`hero__scroll-indicator ${scrollActive ? "hero__scroll-indicator--active" : ""}`}
+              aria-hidden="true"
+              ref={scrollIndicatorRef}
+            >
+              <span>Scroll down</span>
+              <span className="hero__scroll-indicator-arrow">▼</span>
             </div>
           </section>
 
