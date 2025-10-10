@@ -121,12 +121,12 @@ const NeuralField = () => {
       canvas.style.height = `${height}px`
       context.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      const densityFactor = Math.min(120, Math.floor((width * height) / 9000))
+      const densityFactor = Math.min(180, Math.floor((width * height) / 6000))
       nodes = Array.from({ length: densityFactor }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
+        vx: (Math.random() - 0.5) * 1.4,
+        vy: (Math.random() - 0.5) * 1.4,
         radius: Math.random() * 1.7 + 0.6,
       }))
     }
@@ -152,8 +152,12 @@ const NeuralField = () => {
     const updateNodes = () => {
       const width = window.innerWidth
       const height = window.innerHeight
+      const maxSpeed = 1.6
 
       nodes.forEach(node => {
+        node.vx += (Math.random() - 0.5) * 0.08
+        node.vy += (Math.random() - 0.5) * 0.08
+
         node.x += node.vx
         node.y += node.vy
 
@@ -168,17 +172,19 @@ const NeuralField = () => {
           const dx = pointer.x - node.x
           const dy = pointer.y - node.y
           const distance = Math.sqrt(dx * dx + dy * dy) || 1
-          const influenceRadius = 160
+          const influenceRadius = 220
 
           if (distance < influenceRadius) {
-            const strength = (1 - distance / influenceRadius) * 0.6
-            node.vx -= (dx / distance) * strength * 0.05
-            node.vy -= (dy / distance) * strength * 0.05
+            const strength = (1 - distance / influenceRadius) * 0.9
+            node.vx += (dx / distance) * strength * 0.18
+            node.vy += (dy / distance) * strength * 0.18
           }
         }
 
-        node.vx *= 0.995
-        node.vy *= 0.995
+        node.vx = Math.max(Math.min(node.vx, maxSpeed), -maxSpeed)
+        node.vy = Math.max(Math.min(node.vy, maxSpeed), -maxSpeed)
+        node.vx *= 0.992
+        node.vy *= 0.992
       })
 
       if (pointer.active && performance.now() - pointer.lastActive > 220) {
@@ -192,7 +198,7 @@ const NeuralField = () => {
       const width = window.innerWidth
       const height = window.innerHeight
 
-      context.lineWidth = 0.7
+      context.lineWidth = 0.8
 
       for (let i = 0; i < nodes.length; i += 1) {
         const nodeA = nodes[i]
@@ -202,11 +208,11 @@ const NeuralField = () => {
           const dx = nodeA.x - nodeB.x
           const dy = nodeA.y - nodeB.y
           const distance = Math.sqrt(dx * dx + dy * dy)
-          const maxDistance = 155
+          const maxDistance = 185
 
           if (distance < maxDistance) {
             const opacity = 1 - distance / maxDistance
-            context.strokeStyle = `rgba(94, 234, 212, ${opacity * 0.35})`
+            context.strokeStyle = `rgba(94, 234, 212, ${opacity * 0.45})`
             context.beginPath()
             context.moveTo(nodeA.x, nodeA.y)
             context.lineTo(nodeB.x, nodeB.y)
@@ -216,7 +222,7 @@ const NeuralField = () => {
       }
 
       nodes.forEach(node => {
-        context.fillStyle = "rgba(148, 163, 184, 0.55)"
+        context.fillStyle = "rgba(148, 163, 184, 0.65)"
         context.beginPath()
         context.arc(node.x, node.y, node.radius, 0, Math.PI * 2)
         context.fill()
@@ -229,17 +235,17 @@ const NeuralField = () => {
           0,
           pointer.x,
           pointer.y,
-          110
+          140
         )
         gradient.addColorStop(0, "rgba(34, 211, 238, 0.35)")
         gradient.addColorStop(1, "rgba(14, 116, 144, 0)")
         context.fillStyle = gradient
         context.beginPath()
-        context.arc(pointer.x, pointer.y, 110, 0, Math.PI * 2)
+        context.arc(pointer.x, pointer.y, 140, 0, Math.PI * 2)
         context.fill()
       }
 
-      context.fillStyle = "rgba(3, 7, 18, 0.18)"
+      context.fillStyle = "rgba(3, 7, 18, 0.16)"
       context.fillRect(0, 0, width, height)
     }
 
@@ -362,25 +368,20 @@ const IndexPage = () => {
 
         <main className="page-content">
           <section
-            className="hero reveal"
+            className="hero hero--cover reveal"
             id="home"
             data-animate
             data-section="home"
           >
-            <div className="hero__intro">
-              <span className="hero__eyebrow">Product Designer &amp; Engineer</span>
-              <h1 className="hero__title">
-                Building thoughtful tools and inclusive experiences for product teams.
-              </h1>
-              <p className="hero__summary">
-                I blend design strategy, rapid prototyping, and code to move ideas from discovery to launch.
-                I'm happiest when partnering with teams to shape calm, legible tools that help people do their best work.
-              </p>
-              <div className="hero__details">
-                <span className="hero__location">Based in Toronto · Working remotely</span>
-                <a className="hero__cta" href="mailto:hello@hassanali.com">
-                  Start a conversation
-                </a>
+            <div className="hero__intro hero__intro--cover">
+              <span className="hero__eyebrow hero__eyebrow--cover">Portfolio</span>
+              <div className="hero__identity">
+                <span className="hero__name">Hassan Ali</span>
+                <span className="hero__title hero__title--cover">Software Developer</span>
+              </div>
+              <div className="hero__scroll-indicator" aria-hidden="true">
+                <span>Scroll</span>
+                <span className="hero__scroll-indicator-arrow">▼</span>
               </div>
             </div>
           </section>
