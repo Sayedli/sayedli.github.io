@@ -491,7 +491,7 @@ const IndexPage = () => {
           >
             <header className="section__header">
               <span className="section__eyebrow">Contact</span>
-              <h2 className="section__title">Let’s build something considerate</h2>
+              <h2 className="section__title">Let’s build something transformative</h2>
               <p className="section__summary">
                 Whether you need a design partner, an audit, or a prototyping sprint, I’d love to hear what you’re working on.
               </p>
@@ -508,7 +508,7 @@ const IndexPage = () => {
           </section>
 
           <footer className="footer">
-            <span>© {currentYear} Hassan Ali · Seattle</span>
+            <span>© {currentYear} Sayed Ali · Seattle</span>
             <a href="mailto:hudsonzaidi@gmail.com">hudsonzaidi@gmail.com</a>
           </footer>
         </main>
@@ -522,10 +522,10 @@ export default IndexPage
 export const Head = () => (
   <>
     <html lang="en" />
-    <title>Hassan Ali – Product Designer &amp; Engineer</title>
+    <title>Sayed Ali – Designer &amp; Engineer</title>
     <meta
       name="description"
-      content="Personal website of Hassan Ali – Product designer and engineer focused on thoughtful tools and inclusive experiences."
+      content="Sayed Ali's Portfolio– Product designer and engineer focused on thoughtful tools and inspiring experiences."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
