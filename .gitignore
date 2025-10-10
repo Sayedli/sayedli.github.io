@@ -1,0 +1,15 @@
+node_modules/
+.cache/
+public/
+
+# Environment & OS artifacts
+.DS_Store
+Thumbs.db
+.env
+
+# Python leftovers (in case of mixed tooling)
+__pycache__/
+*.py[cod]
+*.npz
+.venv/
+.venv311/
