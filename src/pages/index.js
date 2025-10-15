@@ -10,64 +10,70 @@ const navLinks = [
 
 const experiences = [
   {
-    role: "Principal Product Designer · Atlas Labs",
-    period: "2021 – Present",
+    role: "Software Engineer · University of Washington",
+    period: "Sep 2022 – Feb 2025 · Seattle, WA",
     summary:
-      "Leading core product design for an AI-assisted planning platform serving cross-functional product teams. Partnered with PMs and engineers to launch roadmap workflows adopted by 80% of customers, contributing to a 2× increase in retention.",
+      "Automated campus software deployments and infrastructure to deliver faster, more reliable tooling for students and staff.",
     highlights: [
-      "Shipped design system libraries across Figma & React for faster handoffs.",
-      "Ran co-creation sessions with enterprise customers to de-risk major bet launches.",
-      "Built interactive prototypes with React to validate complex scheduling flows.",
+      "Optimized Gradle build pipelines and REST APIs to automate silent installs, cutting deployment time 50% and doubling system performance while driving a 70% user satisfaction lift.",
+      "Applied CI/CD security testing and release chain management to keep installations compliant without slowing delivery.",
+      "Orchestrated Kubernetes and Terraform infrastructure to reduce manual configuration by 60% and keep environments consistent end-to-end.",
     ],
   },
   {
-    role: "Senior Product Designer · Northbound",
-    period: "2018 – 2021",
+    role: "Coding Instructor & STFC Admin · University of Washington",
+    period: "Oct 2022 – Mar 2025 · Seattle, WA",
     summary:
-      "Designed onboarding, account management, and reporting experiences for SMB financial tools. Introduced a modular research practice that informed quarterly strategy and reduced support tickets by 35%.",
+      "Guided student technologists while running funding operations that scale the university’s developer ecosystem.",
     highlights: [
-      "Created adaptable UI patterns that scaled across three B2B products.",
-      "Partnered with data science to craft visualizations for high-volume dashboards.",
-      "Facilitated design critiques and mentored junior designers.",
+      "Secured 1st place in the PNW Coding Competition using Dijkstra's Algorithm to solve a satellite communications path challenge.",
+      "Mentored a cohort of 13 honors freshmen through foundational programming coursework and project critiques.",
+      "Delivered an Angular and Django inventory platform that reduced bookstore load times by 25% and improved usability.",
     ],
   },
   {
-    role: "Design Engineer · Freelance",
-    period: "2014 – 2018",
+    role: "IT Intern · KBA Inc.",
+    period: "Jun 2021 – Sep 2022 · Bellevue, WA",
     summary:
-      "Collaborated with founders and non-profits to launch custom sites, brand collateral, and product experiments. Delivered polished experiences with an emphasis on accessibility and maintainable code.",
+      "Modernized enterprise infrastructure and security tooling for 500+ employees during a major cloud upgrade.",
     highlights: [
-      "Built responsive design systems for early-stage SaaS products.",
-      "Conducted research sprints with community organizations.",
-      "Provided ongoing UX coaching and front-end audits.",
+      "Streamlined SharePoint libraries and user lists for 540 concurrent users to enable upgrades across SharePoint, UKG, and Dynamics SL.",
+      "Deployed vulnerability scanners, SIEM, IDS/IPS, and firewall policies to harden endpoints while maintaining agile stakeholder communication.",
+      "Resolved Remote Gateway Server and VPN issues and integrated Azure with on-prem directories, keeping 400+ staff connected during the Dynamics SL 2018 rollout.",
     ],
   },
 ]
 
 const projects = [
   {
-    title: "Atlas Boards",
-    year: "2023",
+    title: "Cyberforce",
+    year: "2024",
     summary:
-      "A shared planning workspace for product leads. Introduced collaborative prioritization, contextual insights, and automated status updates. Resulted in a 25% reduction in weekly stand-up meetings.",
+      "Full-stack incident response simulator that blends machine learning analytics with operational security drills for renewable energy partners.",
     meta: [
-      "Role: Lead Designer, Prototype Engineer",
-      "Tools: Figma, React, Framer Motion",
+      "Role: Lead Full-Stack Engineer",
+      "Tools: React, Node.js, Azure, Hive, Kafka, Spark",
     ],
   },
   {
-    title: "Northbound Guides",
-    year: "2020",
+    title: "Campus Deployment Automation",
+    year: "2023",
     summary:
-      "A contextual knowledge base that brings support insights into the product. Shipped a guided onboarding flow that improved activation by 18% and scaled across two other products.",
-    meta: ["Role: Product Designer", "Tools: Figma, Notion, Vue"],
+      "CI/CD tooling that powers campus-wide silent installations, doubling performance while keeping release security checks automated.",
+    meta: [
+      "Role: Software Engineer",
+      "Tools: Gradle, REST APIs, Kubernetes, Terraform",
+    ],
   },
   {
-    title: "Open Transit Map",
-    year: "2017",
+    title: "STFC Inventory Platform",
+    year: "2024",
     summary:
-      "Volunteer project building a lightweight transit map for underserved areas. Focused on accessibility-first design, dark mode support, and inclusive language localization.",
-    meta: ["Role: Design Engineer", "Tools: Sketch, React Native"],
+      "An Angular and Django service that streamlines bookstore operations and reduces load times for student technology services by 25%.",
+    meta: [
+      "Role: Coding Instructor & STFC Admin",
+      "Tools: Angular, Django, PostgreSQL",
+    ],
   },
 ]
 
