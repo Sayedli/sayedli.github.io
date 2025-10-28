@@ -507,7 +507,7 @@ const IndexPage = () => {
               <a href="https://www.linkedin.com/in/sayedli/" target="_blank" rel="noreferrer">
                 LinkedIn
               </a>
-              <a href="https://sayedli.github.io" target="_blank" rel="noreferrer">
+              <a href="https://github.com/Sayedli" target="_blank" rel="noreferrer">
                 GitHub
               </a>
             </div>
